@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Lançamentos</title>
+</head>
+<h:body>
+	<ui:include src="/menu.xhtml"></ui:include>
+	<h:form id="formularioDeLancamento" style="margin-top:22%; margin-left:40%;">
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Lançamentos"></h:outputText>
+			</f:facet>
+			<h:outputText value="ID: "></h:outputText>
+			<h:panelGroup>
+				<h:outputText value="#{lancamentoBean.lancamento.id}"></h:outputText>
+				<h:inputHidden value="#{lancamentoBean.lancamento.id}" ></h:inputHidden>
+			</h:panelGroup>
+			<h:outputText value="Nota: "></h:outputText>
+			<h:inputText value="#{lancamentoBean.lancamento.numeroNotaFiscal}" ></h:inputText>
+			<h:outputText value="Origem: "></h:outputText>
+			<h:inputText value="#{lancamentoBean.lancamento.empresaOrigem}"></h:inputText>
+			<h:outputText value="Destino: "></h:outputText>
+			<h:inputText value = "#{lancamentoBean.lancamento.empresaDestino}"></h:inputText>
+			<h:outputText></h:outputText>
+			<h:panelGroup style="center">
+				<h:commandButton id="salvar" value="Salvar" action="#{lancamentoBean.salvar}" title="Salvar" image="/resources/imagens/salvar.png" style="height: 30px; width:30px;"></h:commandButton>
+				<h:commandButton id="merge" value="Merge" action="#{lancamentoBean.merge}" title="Update/Merge" image="/resources/imagens/merge.png" style="height: 30px; width:30px; margin-left: 1cm"></h:commandButton>
+				<h:commandButton id="novo" value="Novo" action="#{lancamentoBean.novo}" title="Novo" image="resources/imagens/novo2.png" style="height:30px; width:60px;margin-left: 1cm"></h:commandButton>
+				<h:commandButton id="deletar" value="Deletar" action="#{lancamentoBean.delete}" title="Deletar" image="/resources/imagens/delete.png" style="height: 30px; width:30px;margin-left: 1cm"></h:commandButton>
+				<h:commandButton id="limpar" type="reset" value="Limpar" title="Limpar form" image="/resources/imagens/limpar.png" style="height: 30px; width:30px;margin-left: 1cm"></h:commandButton>
+			</h:panelGroup>
+		</h:panelGrid>
+		<h:dataTable  value="#{lancamentoBean.lancamentos}" var="lanc" bgcolor="Gray" border="3" cellspacing="2" rendered="#{pessoaBean.permiteAcesso('ADministrador')}">
+			<f:facet name="header">Lista de Lançamentos cadastrados.</f:facet>
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{lanc.id}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Numero da Nota</f:facet>
+				<h:outputText value="#{lanc.numeroNotaFiscal}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Origem</f:facet>
+				<h:outputText value="#{lanc.empresaOrigem}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Destino</f:facet>
+				<h:outputText value="#{lanc.empresaDestino}"></h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Opções</f:facet>
+				<h:column >
+					<h:commandLink title="Editar">
+						<f:setPropertyActionListener value="#{lanc}" target="#{lancamentoBean.lancamento}"></f:setPropertyActionListener>
+						<h:graphicImage value="/resources/imagens/editar.png" style="height: 20px; width:20px"></h:graphicImage>
+					</h:commandLink>
+				</h:column>
+				<h:column>
+					<h:commandLink title="Deletar" action="#{lancamentoBean.delete}">
+						<f:setPropertyActionListener value="#{lanc}" target="#{lancamentoBean.lancamento}"></f:setPropertyActionListener>
+						<h:graphicImage value="/resources/imagens/delete.png" style="height: 20px;width:20px"></h:graphicImage>
+					</h:commandLink>
+				</h:column>
+			</h:column>								
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
