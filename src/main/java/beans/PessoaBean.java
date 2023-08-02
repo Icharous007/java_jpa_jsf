@@ -12,25 +12,18 @@ import java.io.Serializable;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIInput;
-import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.SelectItem;
 import javax.imageio.ImageIO;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -45,6 +38,7 @@ import entity.Cidades;
 import entity.Estados;
 import entity.Pessoa;
 import jpautil.JPAUTIL;
+import net.bootsfaces.component.selectOneMenu.SelectOneMenu;
 import repository.IDAOPessoa;
 import repository.IDAOPessoaImp;
 
@@ -228,6 +222,8 @@ public class PessoaBean implements Serializable{
 			ExternalContext externalContext = context.getExternalContext();
 			externalContext.getSessionMap().put("logedUser", user);
 			return "teste.xhtml";
+		}else {
+			mensagem("Senha ou Login invalidos.");
 		}
 		return"index.xhtml";
 	}
@@ -250,7 +246,7 @@ public class PessoaBean implements Serializable{
 	}
 	public void carregaCidades(AjaxBehaviorEvent ajaxBehaviorEvent) {
 		System.out.println("chamou o carrega cidades." + ajaxBehaviorEvent);
-		Estados estado = (Estados)((HtmlSelectOneMenu)ajaxBehaviorEvent.getSource()).getValue();
+		Estados estado = (Estados)((SelectOneMenu)ajaxBehaviorEvent.getSource()).getValue();
 		System.out.println(estado);
 		if (estado!= null) {
 			pessoa.setEstados(estado);
@@ -284,6 +280,7 @@ public class PessoaBean implements Serializable{
 			Estados estado = pessoa.getCidade().getEstados();
 			pessoa.setEstados(estado);
 			carregaCidades(estado);
+			mensagem("Cadastro carregado com sucesso!!");
 		}
 	}
 	

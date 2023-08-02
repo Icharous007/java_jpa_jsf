@@ -29,7 +29,7 @@ public class Pessoa implements Serializable	{
 	
 	private String nome;
 	//@NotEmpty(message = "sobrenome está vazio.")
-	@NotEmpty(message = "sobrenome esta vazio")
+	//@NotEmpty(message = "sobrenome esta vazio")
 	private String sobrenome;
 	private Integer idade;
 	

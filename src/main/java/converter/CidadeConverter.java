@@ -29,6 +29,8 @@ public class CidadeConverter implements Serializable, Converter{
 		EntityTransaction entityTransaction = entityManager.getTransaction();
 		entityTransaction.begin();
 		Cidades cidade = entityManager.find(Cidades.class, codigo);
+		entityTransaction.commit();
+		entityManager.close();
 		return cidade;
 	}
 

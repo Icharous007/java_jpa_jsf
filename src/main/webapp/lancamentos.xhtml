@@ -1,31 +1,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Lançamentos</title>
-</head>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Lançamentos</title>
+</h:head>
 <h:body>
 	<ui:include src="/menu.xhtml"></ui:include>
-	<h:form id="formularioDeLancamento" style="margin-top:22%; margin-left:40%;">
-		<h:panelGrid columns="2">
+	<b:form id="formularioDeLancamento" style="margin-top:12%; margin-right:5%; margin-left:5%;">
+		<b:messages></b:messages>
+		<b:panelGrid columns="2">
 			<f:facet name="header">
 				<h:outputText value="Lançamentos"></h:outputText>
 			</f:facet>
-			<h:outputText value="ID: "></h:outputText>
+			<h:outputLabel value="ID: "></h:outputLabel>
+			<h:outputLabel></h:outputLabel>
 			<h:panelGroup>
 				<h:outputText value="#{lancamentoBean.lancamento.id}"></h:outputText>
 				<h:inputHidden value="#{lancamentoBean.lancamento.id}" ></h:inputHidden>
 			</h:panelGroup>
-			<h:outputText value="Nota: "></h:outputText>
-			<h:inputText value="#{lancamentoBean.lancamento.numeroNotaFiscal}" ></h:inputText>
-			<h:outputText value="Origem: "></h:outputText>
-			<h:inputText value="#{lancamentoBean.lancamento.empresaOrigem}"></h:inputText>
-			<h:outputText value="Destino: "></h:outputText>
-			<h:inputText value = "#{lancamentoBean.lancamento.empresaDestino}"></h:inputText>
-			<h:outputText></h:outputText>
+			<b:inputText label="Nota: " value="#{lancamentoBean.lancamento.numeroNotaFiscal}" ></b:inputText>
+			<b:inputText label="Origem: " value="#{lancamentoBean.lancamento.empresaOrigem}"></b:inputText>
+			<b:inputText label="Destino: " value = "#{lancamentoBean.lancamento.empresaDestino}"></b:inputText>
+			<h:outputLabel></h:outputLabel>
 			<h:panelGroup style="center">
 				<h:commandButton id="salvar" value="Salvar" action="#{lancamentoBean.salvar}" title="Salvar" image="/resources/imagens/salvar.png" style="height: 30px; width:30px;"></h:commandButton>
 				<h:commandButton id="merge" value="Merge" action="#{lancamentoBean.merge}" title="Update/Merge" image="/resources/imagens/merge.png" style="height: 30px; width:30px; margin-left: 1cm"></h:commandButton>
@@ -33,25 +33,27 @@
 				<h:commandButton id="deletar" value="Deletar" action="#{lancamentoBean.delete}" title="Deletar" image="/resources/imagens/delete.png" style="height: 30px; width:30px;margin-left: 1cm"></h:commandButton>
 				<h:commandButton id="limpar" type="reset" value="Limpar" title="Limpar form" image="/resources/imagens/limpar.png" style="height: 30px; width:30px;margin-left: 1cm"></h:commandButton>
 			</h:panelGroup>
-		</h:panelGrid>
-		<h:dataTable  value="#{lancamentoBean.lancamentos}" var="lanc" bgcolor="Gray" border="3" cellspacing="2" rendered="#{pessoaBean.permiteAcesso('ADministrador')}">
+		</b:panelGrid>
+	</b:form>
+	<b:form style="margin-left: 5%;margin-right:5%;">
+		<b:dataTable  value="#{lancamentoBean.lancamentos}" var="lanc" bgcolor="Gray" border="3" cellspacing="2" rendered="#{pessoaBean.permiteAcesso('ADministrador')}">
 			<f:facet name="header">Lista de Lançamentos cadastrados.</f:facet>
-			<h:column>
+			<b:column>
 				<f:facet name="header">ID</f:facet>
 				<h:outputText value="#{lanc.id}"></h:outputText>
-			</h:column>
-			<h:column>
+			</b:column>
+			<b:column>
 				<f:facet name="header">Numero da Nota</f:facet>
 				<h:outputText value="#{lanc.numeroNotaFiscal}"></h:outputText>
-			</h:column>
-			<h:column>
+			</b:column>
+			<b:column>
 				<f:facet name="header">Origem</f:facet>
 				<h:outputText value="#{lanc.empresaOrigem}"></h:outputText>
-			</h:column>
-			<h:column>
+			</b:column>
+			<b:column>
 				<f:facet name="header">Destino</f:facet>
 				<h:outputText value="#{lanc.empresaDestino}"></h:outputText>
-			</h:column>
+			</b:column>
 			<h:column>
 				<f:facet name="header">Opções</f:facet>
 				<h:column >
@@ -67,7 +69,7 @@
 					</h:commandLink>
 				</h:column>
 			</h:column>								
-		</h:dataTable>
-	</h:form>
+		</b:dataTable>
+	</b:form>
 </h:body>
 </html>

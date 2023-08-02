@@ -46,6 +46,8 @@ public class IDAOPessoaImp implements IDAOPessoa {
 		for (Estados estado: estados) {
 			listaDeItens.add(new SelectItem(estado,estado.getNome()));
 		}
+		entityTransaction.commit();
+		entityManager.close();
 		return listaDeItens;
 	}
 	

@@ -1,22 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:b="http://bootsfaces.net/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Login na aplicação</title>
-</head>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Login na aplicação</title>
+</h:head>
 <body>
-	<h:form style="margin-top: 20%; margin-left: 40%">
+	<b:messages autoUpdate="true"></b:messages>
+	<b:form style="margin-top:20%; margin-left:25%;">
 		<h1>Faça seu Login.</h1>
-		<h:panelGrid columns="2">
-			<h:outputLabel value="Login: "></h:outputLabel>
-			<h:inputText value="#{pessoaBean.pessoa.login}" pt:placeholder="digite seu login."></h:inputText>
-			<h:outputLabel value="Senha: "></h:outputLabel>
-			<h:inputSecret value="#{pessoaBean.pessoa.senha}" pt:placeholder = "digite sua senha."></h:inputSecret>
-			<h:commandButton value="Acessar" action="#{pessoaBean.login}"></h:commandButton>
-		</h:panelGrid>
-	</h:form>
+		<b:panelGrid columns="3">
+			<b:column>
+				<b:inputText label="Login: " id="login" value="#{pessoaBean.pessoa.login}" pt:placeholder="digite seu login." requiredMessage="Informe Login" required="true"></b:inputText >
+				<b:message for="login" autoUpdate="true"></b:message>
+			</b:column>
+			<b:column>
+				
+				<b:inputSecret label="Senha: " id="senha" value="#{pessoaBean.pessoa.senha}" pt:placeholder = "digite sua senha." required="true" requiredMessage="Deve existir uma senha."></b:inputSecret>
+				<b:message for="senha" autoUpdate="true"></b:message>
+			</b:column>
+		</b:panelGrid>
+		<b:commandButton value="Acessar" action="#{pessoaBean.login}" style="width: 65%"></b:commandButton>
+	</b:form>
 </body>
 </html>

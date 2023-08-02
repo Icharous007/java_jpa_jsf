@@ -26,9 +26,9 @@ public class FiltroDeAutenticacao implements Serializable, Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		System.out.println(req.getContextPath());
-		System.out.println(req.getRequestURI());
-		System.out.println(req.getServletPath());
+		//System.out.println(req.getContextPath());
+		//System.out.println(req.getRequestURI());
+		//System.out.println(req.getServletPath());
 		HttpSession sesson = req.getSession();
 		Pessoa logedUser = (Pessoa) sesson.getAttribute("logedUser");
 		if(!"/index.xhtml".equalsIgnoreCase(req.getServletPath()) &&( logedUser == null ) ) {
@@ -36,7 +36,7 @@ public class FiltroDeAutenticacao implements Serializable, Filter{
 			dispatcher.forward(request, response);
 			return;
 		}else {
-			System.out.println("Ivocando Filtro.");
+			//System.out.println("Ivocando Filtro.");
 			chain.doFilter(request, response);		
 		}		
 	}
