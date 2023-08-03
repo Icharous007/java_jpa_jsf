@@ -42,7 +42,7 @@ public class LancamentoBean implements Serializable{
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = context.getExternalContext();
 		Pessoa usuarioLogado = (Pessoa) externalContext.getSessionMap().get("logedUser");
-		lancamentos = idaoLancamentoImp.consultar(usuarioLogado.getId());
+		lancamentos = idaoLancamentoImp.consultar3PorPagina(usuarioLogado.getId());
 	}
 
 	public Lancamento getLancamento() {

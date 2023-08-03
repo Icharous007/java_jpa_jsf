@@ -12,18 +12,20 @@ xmlns:b="http://bootsfaces.net/ui"
 	<b:messages autoUpdate="true"></b:messages>
 	<b:form style="margin-top:20%; margin-left:25%;">
 		<h1>Faça seu Login.</h1>
-		<b:panelGrid columns="3">
-			<b:column>
-				<b:inputText label="Login: " id="login" value="#{pessoaBean.pessoa.login}" pt:placeholder="digite seu login." requiredMessage="Informe Login" required="true"></b:inputText >
-				<b:message for="login" autoUpdate="true"></b:message>
-			</b:column>
-			<b:column>
-				
-				<b:inputSecret label="Senha: " id="senha" value="#{pessoaBean.pessoa.senha}" pt:placeholder = "digite sua senha." required="true" requiredMessage="Deve existir uma senha."></b:inputSecret>
-				<b:message for="senha" autoUpdate="true"></b:message>
-			</b:column>
-		</b:panelGrid>
-		<b:commandButton value="Acessar" action="#{pessoaBean.login}" style="width: 65%"></b:commandButton>
+		<b:panel style="margin-right:25%">
+			<b:panelGrid columns="2" >
+				<b:column>
+					<b:inputText label="Login: " id="login" value="#{pessoaBean.pessoa.login}" pt:placeholder="digite seu login." requiredMessage="Informe Login" required="true"></b:inputText >
+					<b:message for="login" autoUpdate="true"></b:message>
+				</b:column>
+				<b:column>
+					
+					<b:inputSecret label="Senha: " id="senha" value="#{pessoaBean.pessoa.senha}" pt:placeholder = "digite sua senha." required="true" requiredMessage="Deve existir uma senha."></b:inputSecret>
+					<b:message for="senha" autoUpdate="true"></b:message>
+				</b:column>
+			</b:panelGrid>
+			<b:commandButton value="Acessar" action="#{pessoaBean.login}" style="width: 100%"></b:commandButton>
+		</b:panel>
 	</b:form>
 </body>
 </html>

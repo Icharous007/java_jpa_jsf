@@ -177,7 +177,7 @@ public class PessoaBean implements Serializable{
 	
 	@PostConstruct
 	public void listarPessoas() {
-		pessoas = genericDao.getListEntity(Pessoa.class);
+		pessoas = genericDao.getListEntity2PerPag(Pessoa.class);
 	}
 	
 	public String novo() {
@@ -215,7 +215,7 @@ public class PessoaBean implements Serializable{
 	}
 	
 	public String login() {
-		System.out.println(pessoa.getLogin()+"-----"+pessoa.getSenha());
+		//System.out.println(pessoa.getLogin()+"-----"+pessoa.getSenha());
 		Pessoa user = idaoPessoa.consultarUsuario(pessoa.getLogin(), pessoa.getSenha());
 		if(user!= null) {
 			FacesContext context = FacesContext.getCurrentInstance();

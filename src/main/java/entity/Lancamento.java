@@ -1,6 +1,7 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Lancamento implements Serializable {
@@ -26,6 +29,12 @@ public class Lancamento implements Serializable {
 	
 	@ManyToOne(optional = true)
 	private Pessoa usuarioLogado;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataInicial;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataFinal;
 
 	public Long getId() {
 		return id;
@@ -65,6 +74,22 @@ public class Lancamento implements Serializable {
 
 	public void setUsuarioLogado(Pessoa usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
+	}
+
+	public Date getDataInicial() {
+		return dataInicial;
+	}
+
+	public void setDataInicial(Date dataInicial) {
+		this.dataInicial = dataInicial;
+	}
+
+	public Date getDataFinal() {
+		return dataFinal;
+	}
+
+	public void setDataFinal(Date dataFinal) {
+		this.dataFinal = dataFinal;
 	}
 
 	@Override

@@ -10,22 +10,32 @@
 </h:head>
 <h:body>
 	<ui:include src="/menu.xhtml"></ui:include>
+	<h1 style="text-align:center;">Lançamentos</h1>
 	<b:form id="formularioDeLancamento" style="margin-top:12%; margin-right:5%; margin-left:5%;">
 		<b:messages></b:messages>
 		<b:panelGrid columns="2">
 			<f:facet name="header">
 				<h:outputText value="Lançamentos"></h:outputText>
 			</f:facet>
-			<h:outputLabel value="ID: "></h:outputLabel>
-			<h:outputLabel></h:outputLabel>
-			<h:panelGroup>
-				<h:outputText value="#{lancamentoBean.lancamento.id}"></h:outputText>
-				<h:inputHidden value="#{lancamentoBean.lancamento.id}" ></h:inputHidden>
-			</h:panelGroup>
-			<b:inputText label="Nota: " value="#{lancamentoBean.lancamento.numeroNotaFiscal}" ></b:inputText>
-			<b:inputText label="Origem: " value="#{lancamentoBean.lancamento.empresaOrigem}"></b:inputText>
-			<b:inputText label="Destino: " value = "#{lancamentoBean.lancamento.empresaDestino}"></b:inputText>
-			<h:outputLabel></h:outputLabel>
+			<b:panel>
+				<b:column>
+					<h:outputLabel value="ID: "></h:outputLabel>
+					<h:outputLabel></h:outputLabel>
+					<h:panelGroup>
+						<h:outputText value="#{lancamentoBean.lancamento.id}"></h:outputText>
+						<h:inputHidden value="#{lancamentoBean.lancamento.id}" ></h:inputHidden>
+					</h:panelGroup>
+					<b:inputText label="Nota: " value="#{lancamentoBean.lancamento.numeroNotaFiscal}" ></b:inputText>
+					<b:dateTimePicker label="Data do Lançamento inicial: " locale="en" value="#{lancamentoBean.lancamento.dataInicial}"></b:dateTimePicker>
+				</b:column>
+			</b:panel>
+			<b:panel>
+				<b:column>
+					<b:inputText label="Origem: " value="#{lancamentoBean.lancamento.empresaOrigem}"></b:inputText>
+					<b:inputText label="Destino: " value = "#{lancamentoBean.lancamento.empresaDestino}"></b:inputText>
+					<b:dateTimePicker label="Data do Lançamento final: " locale="en" value="#{lancamentoBean.lancamento.dataFinal}"></b:dateTimePicker>
+				</b:column>
+			</b:panel>
 			<h:panelGroup style="center">
 				<h:commandButton id="salvar" value="Salvar" action="#{lancamentoBean.salvar}" title="Salvar" image="/resources/imagens/salvar.png" style="height: 30px; width:30px;"></h:commandButton>
 				<h:commandButton id="merge" value="Merge" action="#{lancamentoBean.merge}" title="Update/Merge" image="/resources/imagens/merge.png" style="height: 30px; width:30px; margin-left: 1cm"></h:commandButton>
@@ -33,6 +43,7 @@
 				<h:commandButton id="deletar" value="Deletar" action="#{lancamentoBean.delete}" title="Deletar" image="/resources/imagens/delete.png" style="height: 30px; width:30px;margin-left: 1cm"></h:commandButton>
 				<h:commandButton id="limpar" type="reset" value="Limpar" title="Limpar form" image="/resources/imagens/limpar.png" style="height: 30px; width:30px;margin-left: 1cm"></h:commandButton>
 			</h:panelGroup>
+			<h:outputLabel></h:outputLabel>
 		</b:panelGrid>
 	</b:form>
 	<b:form style="margin-left: 5%;margin-right:5%;">

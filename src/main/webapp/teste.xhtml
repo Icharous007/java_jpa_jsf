@@ -39,10 +39,11 @@
 				<b:inputText id="SOBRENOME" value="#{pessoaBean.pessoa.sobrenome}"></b:inputText>						
 			</b:column>				
 			<b:column>
-				<h:outputLabel value="Data de nascimento: "></h:outputLabel>
-				<b:inputText id="NASCIMENTO" value="#{pessoaBean.pessoa.dataDeNascimento}" converterMessage="Data em padão incorreto." >
+				<b:datepicker label="Data de Nascimento: " value="#{pessoaBean.pessoa.dataDeNascimento}" locale="pt_BR">
+				</b:datepicker>
+				<!-- <b:inputText id="NASCIMENTO" value="#{pessoaBean.pessoa.dataDeNascimento}" converterMessage="Data em padão incorreto." >
 					<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR" timeZone="GMT-03:00"></f:convertDateTime>
-				</b:inputText>
+				</b:inputText> -->
 			</b:column>								
 			<b:column>
 				<h:outputLabel value="Idade: "></h:outputLabel>

@@ -58,6 +58,17 @@ public class GenericDao<T> implements Serializable {
 		entityManager.close();
 		return retorno;
 	}
+	
+	public List<T> getListEntity2PerPag(Class<T> entity){
+		EntityManager entityManager = JPAUTIL.getEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		List<T> retorno = entityManager.createQuery("FROM " + entity.getName() + " ORDER BY id DESC ").setMaxResults(2).getResultList();
+		entityTransaction.commit();
+		entityManager.close();
+		return retorno;
+	}
+	
 	public T cosultar(Class<T> entity, String id) {
 		EntityManager entityManager = JPAUTIL.getEntityManager();
 		EntityTransaction entityTransaction = entityManager.getTransaction();
