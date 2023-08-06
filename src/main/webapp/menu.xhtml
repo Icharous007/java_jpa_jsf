@@ -10,7 +10,7 @@
 				<b:navCommandLink value="Administração" action="teste" rendered="#{pessoaBean.permiteAcesso('Administrador')}"/>
 				<b:navCommandLink value="Lançamentos" action="lancamentos"/>
 				<b:dropMenu value="Relatorios">
-					<b:navCommandLink value="Relatório de Notas."></b:navCommandLink>
+					<b:navCommandLink value="Relatório de Notas." action="relatorioLancamentos"></b:navCommandLink>
 					<b:navCommandLink value="Relatório de Usuários."></b:navCommandLink>
 				</b:dropMenu>
 				<b:navCommandLink value="Trocar Usuário" action="#{pessoaBean.deslogar}"/>
