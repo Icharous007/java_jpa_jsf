@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -31,6 +32,12 @@ public class LancamentoBean implements Serializable{
 		ExternalContext externalContext = context.getExternalContext();
 		Pessoa usuarioLogado = (Pessoa) externalContext.getSessionMap().get("logedUser");
 		lancamento.setUsuarioLogado(usuarioLogado);
+		if(lancamento.getDataFinal().before(lancamento.getDataInicial())) {
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			FacesMessage facesMessage = new FacesMessage("Data Iniciol maior que data fim.");
+			facesContext.addMessage(null, facesMessage);
+			
+		}
 		dao.salvar(lancamento);
 		
 		carregarLancamento();

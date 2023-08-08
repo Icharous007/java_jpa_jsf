@@ -1,6 +1,7 @@
 package repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -49,6 +50,34 @@ public class IDAOPessoaImp implements IDAOPessoa {
 		entityTransaction.commit();
 		entityManager.close();
 		return listaDeItens;
+	}
+
+	@Override
+	public List<Pessoa> relatorioPessoa(String nome, Date dataDeNascimento, String perfil, String sexo,
+			Integer[] linguagens) {
+		List<Pessoa> listaDeUsuarios = new ArrayList<>();
+		EntityManager entityManager = JPAUTIL.getEntityManager();
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+		entityTransaction.begin();
+		
+		if(nome!=null && dataDeNascimento==null&&perfil==null&&sexo==null&&linguagens==null) {
+			listaDeUsuarios = entityManager.createQuery("FROM Pessoa WHERE upper(nome) like '%"+nome.toUpperCase()+"%'",Pessoa.class)
+							.getResultList();
+		}else if(nome==null && dataDeNascimento!=null&&perfil==null&&sexo==null&&linguagens==null) {
+			listaDeUsuarios = entityManager.createQuery("FROM Pessoa WHERE dataDeNascimento >= :dtNacimento",Pessoa.class)
+					.setParameter("dtNacimento", dataDeNascimento)
+					.getResultList();
+		}else if(nome==null && dataDeNascimento==null&&perfil!=null&&sexo==null&&linguagens==null) {
+			listaDeUsuarios = entityManager.createQuery("FROM Pessoa WHERE perfil = :p",Pessoa.class)
+					.setParameter("p", perfil)
+					.getResultList();
+		}else if(nome==null && dataDeNascimento==null&&perfil==null&&sexo!=null&&linguagens==null) {
+			listaDeUsuarios = entityManager.createQuery("FROM Pessoa WHERE sexo = :s",	Pessoa.class)
+					.setParameter("s", sexo)
+					.getResultList();
+		}
+		
+		return listaDeUsuarios;
 	}
 	
 	
