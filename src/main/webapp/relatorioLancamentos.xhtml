@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Relatório Lançamentos</title>
+</h:head>
+<h:body>
+	<ui:include src="/menu.xhtml"></ui:include>
+	<h1 style="text-align:center;">Relatório Lancamentos</h1>
+	<b:form id="formularioDeLancamento" style="margin-top:12%; margin-right:5%; margin-left:5%;">
+		<b:messages></b:messages>
+		<b:panel>
+			<b:panelGrid columns="2">
+				<b:datepicker label="Data Inicial: " value="#{relatorioLancamento.dataInicial}" locale="pt_BR"></b:datepicker>
+				<b:datepicker label="Data Final: " value="#{relatorioLancamento.dataFinal}" locale="pt_BR"></b:datepicker>
+				<b:inputText label="Numero da Nota: " value="#{relatorioLancamento.numeroDaNota}"/>
+			</b:panelGrid>
+				<b:commandButton value="Buscar" look="primary" action="#{relatorioLancamento.buscarLancamento}"/>
+		</b:panel>
+	</b:form>
+	<br></br>
+	<b:form style="margin-left: 5%;margin-right:5%;">
+		<b:dataTable  value="#{relatorioLancamento.listaDeLancamentos}" excel="true" pdf="true" var="lanc" bgcolor="Gray" border="3" cellspacing="2" rendered="#{pessoaBean.permiteAcesso('ADministrador')}">
+			<b:dataTableColumn value="#{lanc.id}" label="ID"></b:dataTableColumn>	
+			<b:dataTableColumn value="#{lanc.usuarioLogado.nome}" label="Nome"></b:dataTableColumn>
+			<b:dataTableColumn value="#{lanc.numeroNotaFiscal}" label="Número da Nota Fiscal"></b:dataTableColumn>
+			<b:dataTableColumn value="#{lanc.dataInicial}" label="Data Inicial"></b:dataTableColumn>
+			<b:dataTableColumn value="#{lanc.dataFinal}" label="Data Final"></b:dataTableColumn>
+		</b:dataTable>
+	</b:form>
+</h:body>
+</html>

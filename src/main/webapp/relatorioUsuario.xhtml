@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Relatório Usuários</title>
+</h:head>
+<h:body>
+	<ui:include src="/menu.xhtml"></ui:include>
+	<h1 style="text-align:center;">Relatório Usuários</h1>
+	<b:form id="formularioDeUsuario" style="margin-top:12%; margin-right:5%; margin-left:5%;">
+		<b:messages></b:messages>
+		<b:panel>
+			<b:panelGrid columns="2">
+				<b:datepicker label="Por data de Nascimento: " value="#{relatorioUsuarioBean.dataDeNascimento}" locale="pt_BR"></b:datepicker>
+				<b:inputText label="Por nome: " value="#{relatorioUsuarioBean.nome}"/>
+				<b:selectOneMenu id="campoNivelProgramador" value="#{relatorioUsuarioBean.perfil}" label="Consulta por perfil: " >
+					<f:selectItem itemValue="#{null}" itemLabel="[Selecione]" ></f:selectItem>
+					<f:selectItem itemValue="ADMINISTRADOR" itemLabel="Administrador"></f:selectItem>
+					<f:selectItem itemValue="SERCRETARIO" itemLabel="Secretário"></f:selectItem>
+					<f:selectItem itemValue="USUARIO" itemLabel="Usuário"></f:selectItem>
+				</b:selectOneMenu>				
+				<b:selectOneMenu id="campoSexo" value="#{relatorioUsuarioBean.sexo}" label="Consulta por sexo:">
+					<f:selectItem itemValue="#{null}" itemLabel="[Selecione]" ></f:selectItem>
+					<f:selectItem itemValue="FEMININO" itemLabel="feminino"></f:selectItem>
+					<f:selectItem itemValue="MASCULINO" itemLabel="masculino"></f:selectItem>
+				</b:selectOneMenu>
+			</b:panelGrid>
+				<b:commandButton value="Buscar" look="primary" action="#{relatorioUsuarioBean.buscarUsuarios}"/>
+		</b:panel>
+	</b:form>
+	<br></br>
+	<b:form style="margin-left: 5%;margin-right:5%;">
+		<b:dataTable  value="#{relatorioUsuarioBean.listaDeUsuarios}" excel="true" pdf="true" var="usu" bgcolor="Gray" border="3" cellspacing="2" rendered="#{pessoaBean.permiteAcesso('ADministrador')}">
+			<b:dataTableColumn value="#{usu.id}" label="ID"></b:dataTableColumn>	
+			<b:dataTableColumn value="#{usu.nome}" label="Nome"></b:dataTableColumn>
+			<b:dataTableColumn value="#{usu.perfil}" label="perfil"></b:dataTableColumn>
+			<b:dataTableColumn value="#{lanc.sexo}" label="Sexo"></b:dataTableColumn>
+		</b:dataTable>
+	</b:form>
+</h:body>
+</html>
